@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Electrician Blog</title>
+<meta name="description" content="Articles and guides from Daylight Electrician Singapore on electrical safety, HDB electrical work, wiring and more.">
+<link rel="icon" href="images/2017/01/cropped-Daylight-Electrician-Singapore-logo-favicon-32x32.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css?v=5">
+<style>
+  .feature-post { display: grid; grid-template-columns: 1.2fr 1fr; background: #fff; border: 1px solid var(--line); border-radius: 24px; overflow: hidden; margin-bottom: 36px; }
+  .feature-post img { width: 100%; height: 100%; object-fit: cover; min-height: 280px; }
+  .feature-post .in { padding: 34px; display: flex; flex-direction: column; gap: 12px; justify-content: center; }
+  .feature-post h2 { font-size: clamp(22px, 2.6vw, 30px); margin: 0; }
+  .feature-post p { color: var(--muted); }
+  @media (max-width: 900px) { .feature-post { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body data-page="blog">
+<div id="site-header"></div>
+<main>
+  <section class="page-hero">
+    <div class="wrap">
+      <div class="crumbs"><a href="index.html">Home</a><span>Blog</span></div>
+      <h1>Articles &amp; guides</h1>
+      <p>Practical advice from our electricians on electrical safety, renovations, HDB electrical work and choosing the right services for your home.</p>
+    </div>
+  </section>
+  <section>
+    <div class="wrap">
+      <div id="featurePost"></div>
+      <div class="grid g3" id="posts"></div>
+      <div class="center" style="margin-top:36px"><a class="btn btn-ink" href="https://www.daylightelectrician.com/blog/" target="_blank" rel="noopener">See all articles on our blog</a></div>
+    </div>
+  </section>
+</main>
+<div id="site-footer"></div>
+<script src="data/catalog.js"></script>
+<script src="assets/site.js?v=5"></script>
+<script>
+  // Latest posts from daylightelectrician.com/blog — full articles open on the original blog.
+  const B = 'https://www.daylightelectrician.com/', I = SITE.UP + '2026/09/';
+  const POSTS = [
+    ['how-does-a-residential-electrician-in-singapore-carry-out-electrical-work-in-an-occupied-home', 'How Does a Residential Electrician in Singapore Carry Out Electrical Work in an Occupied Home?', 'how-does-a-residential-electrician-in-singapore-carry-out-electrical-work-in-an-occupied-h-9441.jpg', 'Electrical work in an occupied home needs careful planning, clear communication and a safe method that keeps disruption to a minimum.', 'Home electrical'],
+    ['how-does-an-emergency-electrician-in-singapore-make-an-electrical-fault-safe-before-permanent-repair', 'How Does an Emergency Electrician in Singapore Make an Electrical Fault Safe Before Permanent Repair?', 'how-does-an-emergency-electrician-in-singapore-make-an-electrical-fault-safe-before-perman-9438.jpg', 'When an electrical fault happens, the immediate priority is not the permanent repair but making the affected point, circuit or area safe.', 'Emergency'],
+    ['what-happens-during-a-24-hour-electrician-call-out-in-singapore-from-arrival-to-safety-check', 'What Happens During a 24 Hour Electrician Call-Out in Singapore From Arrival to Safety Check?', 'what-happens-during-a-24-hour-electrician-call-out-in-singapore-from-arrival-to-safety-che-9435.jpg', 'It helps to know what usually happens from the moment the electrician arrives through to the final safety check.', 'Emergency'],
+    ['how-do-hdb-electrical-contractors-in-singapore-carry-out-electrical-work-during-a-home-renovation', 'How Do HDB Electrical Contractors in Singapore Carry Out Electrical Work During a Home Renovation?', 'how-do-hdb-electrical-contractors-in-singapore-carry-out-electrical-work-during-a-home-ren-9432.jpg', 'During an HDB renovation, electrical work is planned alongside hacking, carpentry, tiling and painting.', 'HDB'],
+    ['how-does-an-hdb-electrician-in-singapore-plan-electrical-work-around-existing-circuits', 'How Does an HDB Electrician in Singapore Plan Electrical Work Around Existing Circuits?', 'how-does-an-hdb-electrician-in-singapore-plan-electrical-work-around-existing-circuits-9429.jpg', 'It starts with understanding what is already in place, what the household needs, and how new work can be integrated without overloading.', 'HDB'],
+    ['what-does-an-electrical-contractor-in-singapore-check-before-adding-new-electrical-load', 'What Does an Electrical Contractor in Singapore Check Before Adding New Electrical Load?', 'what-does-an-electrical-contractor-in-singapore-check-before-adding-new-electrical-load-9426.jpg', 'The key question is not simply whether there is “space” for it, but whether the existing system can safely take the load.', 'Wiring'],
+    ['how-does-an-electrical-contractor-in-singapore-organise-wiring-installation-and-testing-on-a-larger-job', 'How Does an Electrical Contractor in Singapore Organise Wiring, Installation and Testing on a Larger Job?', 'how-does-an-electrical-contractor-in-singapore-organise-wiring-installation-and-testing-on-9423.jpg', 'Larger jobs need careful planning, coordination with other trades, structured installation and proper testing.', 'Wiring'],
+    ['when-do-electrical-services-in-singapore-require-a-licensed-electrical-worker', 'When Do Electrical Services in Singapore Require a Licensed Electrical Worker?', 'when-do-electrical-services-in-singapore-require-a-licensed-electrical-worker-9420.jpg', 'Not every task needs the same level of involvement, but some electrical services do require a licensed electrical worker.', 'Licensing'],
+    ['how-does-a-licensed-electrical-worker-in-singapore-test-new-wiring-before-power-is-restored', 'How Does a Licensed Electrical Worker in Singapore Test New Wiring Before Power Is Restored?', 'how-does-a-licensed-electrical-worker-in-singapore-test-new-wiring-before-power-is-restore-9417.jpg', 'Power should not be restored until a licensed electrical worker has checked the circuit is safe and correctly connected.', 'Licensing'],
+    ['how-are-electrical-services-in-singapore-planned-differently-for-hdb-condo-and-landed-homes', 'How Are Electrical Services in Singapore Planned Differently for HDB, Condo and Landed Homes?', 'how-are-electrical-services-in-singapore-planned-differently-for-hdb-condo-and-landed-home-9453.jpg', 'Each property type comes with different layouts, access arrangements, load patterns and management rules.', 'Home electrical']
+  ];
+  const [f, ...rest] = POSTS;
+  featurePost.innerHTML = `<a class="feature-post reveal" href="${B + f[0]}/" target="_blank" rel="noopener">
+    <img class="hide-on-error" src="${I + f[2]}" alt="" loading="lazy">
+    <div class="in"><span class="tag" style="align-self:flex-start">Latest · ${f[4]}</span><h2>${esc(f[1])}</h2><p>${esc(f[3])}</p>
+    <span class="more" style="font-weight:700;color:var(--brand-navy)">Read article ${icon('ext', 'ext')}</span></div></a>`;
+  posts.innerHTML = rest.map(p => `<a class="card reveal" href="${B + p[0]}/" target="_blank" rel="noopener">
+    <div class="thumb"><img src="${I + p[2]}" alt="" loading="lazy"></div>
+    <div class="body"><span class="tag" style="align-self:flex-start">${p[4]}</span><h3>${esc(p[1])}</h3><p>${esc(p[3])}</p>
+    <span class="more">Read article ${icon('ext', 'ext')}</span></div></a>`).join('');
+  observeReveal();
+</script>
+</body>
+</html>

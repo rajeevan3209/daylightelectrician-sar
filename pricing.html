@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Electrician Price Guide</title>
+<meta name="description" content="Daylight Electrician Singapore price guide: transparent rates for lights, sockets, switches, fans and more, inclusive of labour and transport.">
+<link rel="icon" href="images/2017/01/cropped-Daylight-Electrician-Singapore-logo-favicon-32x32.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css?v=5">
+<style>
+  .how { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 28px; }
+  .how div { background: var(--mist); border-radius: 16px; padding: 22px; display: flex; gap: 14px; }
+  .how b { width: 34px; height: 34px; border-radius: 50%; background: var(--ink); color: var(--sun); display: grid; place-items: center; flex: none; }
+  .how p { color: var(--text); font-size: 15px; }
+  .tips { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+  .tips .card { padding: 24px; }
+  .tips h3 { font-size: 17px; margin-bottom: 8px; }
+  .tips p { color: var(--muted); font-size: 14.5px; }
+  .proj { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 18px; }
+  .proj span { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; font-weight: 600; font-size: 14.5px; display: flex; gap: 10px; align-items: center; }
+  .proj svg { width: 18px; height: 18px; color: var(--sun-2); flex: none; }
+  .featured-img { border-radius: 20px; overflow: hidden; border: 1px solid var(--line); }
+  @media (max-width: 760px) { .how, .tips, .proj { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body data-page="pricing">
+<div id="site-header"></div>
+<main>
+  <section class="page-hero has-img" style="--hero-img:url('images/2025/10/featured-price-page-daylight-electrician-singapore.jpg')">
+    <div class="wrap">
+      <div class="crumbs"><a href="index.html">Home</a><span>Price</span></div>
+      <h1>Electrician Singapore price guide</h1>
+      <p>We strive to offer honest and upfront quotations at competitive prices. WhatsApp us for an accurate, transparent quote for your job.</p>
+      <div class="actions" id="heroActions"></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="narrow">
+      <span class="eyebrow">How pricing works</span>
+      <h2>Agreed before we arrive</h2>
+      <div class="how">
+        <div><b>1</b><p>Before going on-site, we check the electrical issue with you. The price is quoted and agreed by you before our electricians go down.</p></div>
+        <div><b>2</b><p>If we can't assess the job accurately beforehand, we inspect on-site first. There may be a small inspection charge, which may be waived if you engage us for the work.</p></div>
+      </div>
+
+      <h2 style="margin-top:64px">Electrical works price list</h2>
+      <p style="color:var(--muted);margin-bottom:18px">All prices are inclusive of labour &amp; transport.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>#</th><th>Service</th><th>Unit rate</th></tr></thead>
+          <tbody id="rows"></tbody>
+        </table>
+      </div>
+      <p style="font-size:13px;color:var(--muted);margin-top:12px">Prices are a guide. Your final quote depends on the job and is confirmed with you before work starts.</p>
+
+      <h2 style="margin-top:64px">Special projects</h2>
+      <p class="lead">Have a major project? We can provide a team of experienced, skilled electricians for:</p>
+      <div class="proj" id="proj"></div>
+    </div>
+  </section>
+
+  <section class="alt">
+    <div class="wrap">
+      <div class="center">
+        <span class="eyebrow">Save on electrician costs</span>
+        <h2>Tips for hiring an electrician in Singapore</h2>
+        <p class="lead">Cheap is not always best. Finding a cheap electrician is easy; finding a cheap licensed electrician is harder.</p>
+      </div>
+      <div class="tips" style="margin-top:32px">
+        <div class="card"><h3>Hire a licensed electrician</h3><p>Avoid cheap unlicensed electricians and always hire EMA-licensed electricians. You get standard rates from a reputable company, quality work, and a guarantee in case there are issues after installation.</p></div>
+        <div class="card"><h3>Divide up the project</h3><p>Let your electrician assess and list all the electrical works by severity and urgency. If it's over budget, do the critical items first so your home or business stays safe.</p></div>
+        <div class="card"><h3>Plan your estimate</h3><p>Whenever you need electrical work done, do a proper estimate for the project that includes both the electrician fees and the cost of materials.</p></div>
+        <div class="card"><h3>Know when not to DIY</h3><p>Small jobs that don't involve wiring can be done yourself if you know exactly what you're doing. One error can turn your house into a fire trap, so for anything serious, call an EMA-licensed electrician.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap"><div class="band"><div><h2>Get your exact price on WhatsApp</h2><p>Tell us what you need and send a photo. We'll reply with a transparent quote and no hidden costs.</p></div><a class="btn btn-ink" id="bandWa" target="_blank" rel="noopener"></a></div></div>
+  </section>
+</main>
+<div id="site-footer"></div>
+<script src="data/catalog.js"></script>
+<script src="assets/site.js?v=5"></script>
+<script>
+  const PRICES = [
+    ['Replace light bulb', 'From $86', 'From $43 per additional unit'],
+    ['Install / replace LED light', 'From $105', 'From $70 per additional unit'],
+    ['Install / replace downlight (light fitting provided by owner)', 'From $105', 'From $70 per additional unit'],
+    ['Install / replace light / ceiling light fitting', 'From $120', 'From $90 per additional item'],
+    ['Install hanging / deco light fitting (light fitting provided by owner)', 'From $90', 'With existing point · from $60 per additional point'],
+    ['Install a wall fan (fan fitting provided by owner)', 'From $70', 'With existing point · from $40 per additional point'],
+    ['Supply and install 15AMP aircon point (non-conceal)', 'Enquire for price', ''],
+    ['Supply and install 13AMP washing machine point (non-conceal)', 'Enquire for price', ''],
+    ['Supply and install 20AMP water heater point (non-conceal)', 'Enquire for price', ''],
+    ['Supply and install single / double 13AMP power point socket (non-conceal)', 'From $90', ''],
+    ['Supply and install lighting switch point (non-conceal)', 'From $90', ''],
+    ['Replace power socket', 'From $90', 'First item · from $50 per additional item'],
+    ['Replace light switch', 'From $90', 'First item · from $50 per additional item'],
+    ['Supply and install dimmer switch point (non-conceal)', 'From $90', '']
+  ];
+  rows.innerHTML = PRICES.map(([d, p, s], i) => `<tr><td class="num">${i + 1}</td><td>${esc(d)}</td><td class="price">${esc(p)}${s ? `<small>${esc(s)}</small>` : ''}</td></tr>`).join('');
+  proj.innerHTML = ['Electrical rewiring projects', 'Building electrification', 'Light installations', 'Outlet and socket installations', 'Ceiling fan installations', 'Commercial DB boxes, circuit breakers & more']
+    .map(t => `<span>${icon('check')}${t}</span>`).join('');
+  heroActions.innerHTML = `<a class="btn btn-wa" target="_blank" rel="noopener" href="${wa('Hi Daylight Electrician, I would like a quote for ')}">${icon('wa')}WhatsApp for a quote</a>`;
+  bandWa.href = wa('Hi Daylight Electrician, I would like a quote for '); bandWa.innerHTML = icon('wa') + 'WhatsApp ' + SITE.waLabel;
+</script>
+</body>
+</html>

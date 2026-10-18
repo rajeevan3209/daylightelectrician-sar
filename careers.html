@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Careers at Daylight</title>
+<meta name="description" content="Join Daylight Electrician Singapore. Openings for electrical technicians, technician-drivers and licensed electricians.">
+<link rel="icon" href="images/2017/01/cropped-Daylight-Electrician-Singapore-logo-favicon-32x32.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css?v=5">
+<style>
+  .perks { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 30px; }
+  .job { display: grid; grid-template-columns: 300px 1fr; gap: 0; background: #fff; border: 1px solid var(--line); border-radius: 22px; overflow: hidden; }
+  .job + .job { margin-top: 24px; }
+  .job > img { width: 100%; height: 100%; object-fit: cover; min-height: 220px; }
+  .job .in { padding: 28px; }
+  .job h3 { font-size: 22px; margin: 8px 0 10px; }
+  .job p { color: var(--muted); font-size: 15px; }
+  .job details { margin-top: 16px; border-radius: 12px; background: var(--mist); border: 0; }
+  .job details h4 { color: var(--ink); font-size: 14px; text-transform: uppercase; letter-spacing: .05em; margin: 14px 0 6px; }
+  .job details ul { color: var(--text); font-size: 14.5px; display: grid; gap: 4px; }
+  .apply { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 18px; }
+  @media (max-width: 900px) { .job { grid-template-columns: 1fr; } .job > img { max-height: 240px; } .perks { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body data-page="careers">
+<div id="site-header"></div>
+<main>
+  <section class="page-hero has-img" style="--hero-img:url('images/2020/11/careers-job-openings-daylight-electrician-singapore-1.jpg')">
+    <div class="wrap">
+      <div class="crumbs"><a href="index.html">Home</a><span><a href="about.html">About</a></span><span>Careers</span></div>
+      <h1>Careers at Daylight Electrician</h1>
+      <p>Daylight Electrician Singapore is expanding, and we're looking for people to grow with the company. With years of experience delivering top-quality electrician services, we're dedicated to keeping our strong position in the industry.</p>
+      <div class="actions" id="heroActions"></div>
+    </div>
+  </section>
+  <section class="alt" style="padding:56px 0">
+    <div class="wrap">
+      <div class="center"><h2 style="margin-top:0">Why join us?</h2></div>
+      <div class="perks" id="perks"></div>
+    </div>
+  </section>
+  <section>
+    <div class="wrap">
+      <div class="center" style="margin-bottom:36px"><span class="eyebrow">Current positions available</span><h2>Open roles</h2></div>
+      <div id="jobs"></div>
+    </div>
+  </section>
+</main>
+<div id="site-footer"></div>
+<script src="data/catalog.js"></script>
+<script src="assets/site.js?v=5"></script>
+<script>
+  const U = SITE.UP;
+  heroActions.innerHTML = `<a class="btn btn-wa" target="_blank" rel="noopener" href="${wa('Hi Daylight Electrician, I am interested in a job opening.')}">${icon('wa')}Apply via WhatsApp</a>
+    <a class="btn btn-ghost" href="mailto:${SITE.email}?subject=Job%20application">${icon('mail')}Email your resume</a>`;
+  perks.innerHTML = [['award', 'Advancement opportunities', 'Grow your skills and your career with an expanding company.'], ['tag', 'Competitive salary', 'Pay that reflects your skills and experience.'], ['users', 'Open to all', 'Singaporeans, Singapore PRs and all foreigners staying in Singapore are welcome to apply.']]
+    .map(([i, h, p]) => `<div class="feature"><span class="ic">${icon(i)}</span><div><h3>${h}</h3><p>${p}</p></div></div>`).join('');
+
+  const DUTIES = ['Perform maintenance and repair works in a workmanlike manner and in full capacity.', 'Change and reposition electrical points, switches, power points, isolators, DB boxes etc.', 'New installation or repair of electrical points, switches, power points, isolators, DB boxes, switchboxes etc.', 'Review blueprints to determine work details and procedures.', 'Read and interpret engineering drawings, sketches, specifications and job plans.', 'Install wiring and appliances such as water heaters, fans, ovens, hoods and hobs using hand and power tools.', 'Lay cabling, piping and trunking efficiently.', 'Keep records of assignments and produce detailed work reports.', 'Evaluate, troubleshoot, test and repair wiring systems for electrical faults and power failures.', 'Wear applicable PPE at all times and promote safety awareness to colleagues.', 'Perform other duties as required.'];
+  const LEW_DUTIES = ['Hold a qualified Electrician licence under EMA and actively practise electrical works.', 'Troubleshoot and resolve electrical problems for residential and commercial cases.', 'Lead an electrical operations team installing wiring and electrical instruments for clients.', 'Interpret, draw and edit electrical work plan drawings for projects and submissions.', 'Ensure electrical workers are well trained and perform to standard; provide training and SOPs when required.', 'Plan and execute electrical projects, and submit electrical works submissions.', 'Carry out testing and commissioning of electrical works, and be accountable for all related works.'];
+  const REQ = ['At least N-Levels / O-Levels or equivalent education.', 'Technical school graduate with electrical speciality preferred.', 'Existing EMA-certified electrical workers (LEW) will be advantageous.', 'Valid class 3 driving licence. Candidates without one may be considered if they have the relevant work experience.', 'Five years total experience in electrical works, power distribution systems, pump operation and maintenance, or a four-year full apprenticeship.', 'Adequate English communication skills (oral and written).', 'Must pass medical screening and be in good health.', 'Knowledge of commercial or industrial grade power supply and electrical setups is an advantage.'];
+  const ATTR = ['Able to multi-task', 'Self-starter', 'Excellent analytical and problem-solving skills', 'Understands and responds to customer needs', 'Responsible for finishing work tasks', 'Neat and tidy in preparation and clearing up after work', 'Comfortable working indoors or outdoors depending on the job'];
+  const JOBS = [
+    { t: 'Electrical Technician', img: '2021/10/daylight-electrician-careers-photo-daylight-electrician-singapore.jpg', d: 'We are looking for electrical technicians who can perform all kinds of electrical works at residential houses, work well with team members and work independently without supervision. You must be able to diagnose and fix electrical problems, source the materials needed, and perform re-wiring works efficiently, with experience evaluating, troubleshooting and repairing wiring systems for electrical faults and power failures.', duties: DUTIES },
+    { t: 'Electrical Technician (Driver)', img: '2021/10/daylight-electrician-careers-photo-daylight-electrician-singapore-1.jpg', d: 'We are looking for electrical technicians who can perform all kinds of electrical works at residential houses and work well with team members on installation works. You must be able to drive to job sites in the company vehicle with a class 3 driving licence, and be experienced in evaluating, troubleshooting and repairing wiring systems for electrical faults and power failures.', duties: DUTIES },
+    { t: 'Licensed Electrician', img: '2020/11/careers-job-openings-licensed-electrician-daylight-electrician-singapore-1.jpg', d: 'We are looking for licensed electricians who can lead a team of electrical technicians and run daily operations. You will determine service needs for assigned cases and be responsible for installing and repairing electrical points, switches, power points, isolators and DB boxes. Experience with HDB, condo, landed and commercial electrical works in Singapore is required, along with good communication with clients.', duties: LEW_DUTIES.concat(DUTIES.slice(0, 9)) },
+    { t: 'Electrical Technician / Electrician', img: '2020/11/career-job-openings-electrical-technician-electrician-daylight-electrician-singapore-1.jpg', d: 'We are looking for electrical technicians / electricians who can perform a wide range of maintenance and repair works, including installing and troubleshooting wiring, power points, DB boxes and more. You should have adequate English communication skills to interact well with clients in homes and commercial offices, plus excellent analytical and problem-solving skills.', duties: DUTIES }
+  ];
+  jobs.innerHTML = JOBS.map(j => `<article class="job reveal">
+    <img class="hide-on-error" src="${U + j.img}" alt="${esc(j.t)}" loading="lazy">
+    <div class="in"><span class="tag">Full-time · Singapore</span><h3>${esc(j.t)}</h3><p>${esc(j.d)}</p>
+      <details><summary>Responsibilities &amp; requirements</summary><div>
+        <h4>Responsibilities</h4><ul>${j.duties.map(x => `<li>${esc(x)}</li>`).join('')}</ul>
+        <h4>Requirements</h4><ul>${REQ.map(x => `<li>${esc(x)}</li>`).join('')}</ul>
+        <h4>Personal attributes</h4><ul>${ATTR.map(x => `<li>${esc(x)}</li>`).join('')}</ul></div></details>
+      <div class="apply"><a class="btn btn-wa btn-sm" target="_blank" rel="noopener" href="${wa(`Hi Daylight Electrician, I would like to apply for the ${j.t} position.`)}">${icon('wa')}Apply via WhatsApp</a>
+      <a class="btn btn-line btn-sm" href="mailto:${SITE.email}?subject=${encodeURIComponent('Application: ' + j.t)}">${icon('mail')}Email resume</a></div>
+    </div></article>`).join('');
+  observeReveal();
+</script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Locations &amp; Service Areas</title>
+<meta name="description" content="Find a Daylight Electrician near you. Branches in the East, West, North, North-East and Central regions, serving 100+ neighbourhoods across Singapore.">
+<link rel="icon" href="images/2017/01/cropped-Daylight-Electrician-Singapore-logo-favicon-32x32.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css?v=5">
+<style>
+  .finder { display: grid; grid-template-columns: 1fr 1fr; gap: 44px; align-items: start; }
+  .finder .map { border-radius: 22px; overflow: hidden; border: 1px solid var(--line); box-shadow: var(--shadow); position: sticky; top: calc(var(--header-h) + 20px); }
+  .result { margin-top: 14px; min-height: 24px; font-weight: 600; color: var(--muted); }
+  .result b { color: var(--ink); }
+  .region { border: 1px solid var(--line); border-radius: 20px; padding: 24px; background: #fff; scroll-margin-top: calc(var(--header-h) + 20px); transition: box-shadow .2s, border-color .2s; }
+  .region + .region { margin-top: 18px; }
+  .region.hit { border-color: var(--sun-2); box-shadow: 0 0 0 3px rgba(249,194,46,.3); }
+  .region h3 { font-size: 20px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+  .region .meta { display: flex; flex-wrap: wrap; gap: 8px 22px; margin: 10px 0 16px; font-size: 14px; color: var(--muted); font-weight: 600; }
+  .region .meta a, .region .meta span { display: inline-flex; gap: 6px; align-items: center; }
+  .region .meta svg { width: 15px; height: 15px; color: var(--sun-2); }
+  .region .meta a:hover { color: var(--ink); }
+  .region .chip { cursor: default; font-size: 13px; padding: 6px 12px; }
+  .region .chip.match { background: var(--sun); border-color: var(--sun); color: var(--ink); }
+  .reasons { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 32px; }
+  @media (max-width: 900px) { .finder, .reasons { grid-template-columns: 1fr; } .finder .map { position: static; } }
+</style>
+</head>
+<body data-page="locations">
+<div id="site-header"></div>
+<main>
+  <section class="page-hero has-img" style="--hero-img:url('images/2025/12/electrician-near-me-daylight-electrician-singapore.jpg')">
+    <div class="wrap">
+      <div class="crumbs"><a href="index.html">Home</a><span>Locations &amp; service areas</span></div>
+      <h1>Electrician near you, islandwide</h1>
+      <p>Licensed electrician services for HDB, condo and landed homes. Fast response, clear pricing and branches in every region of Singapore.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap finder">
+      <div>
+        <span class="eyebrow">Find your branch</span>
+        <h2>Which branch serves you?</h2>
+        <label class="search" style="margin-top:10px"><span class="sr-only">Search your area</span><span id="sIcon"></span><input id="q" type="search" placeholder="Type your area, e.g. Tampines, Bishan, Jurong" autocomplete="off"></label>
+        <p class="result" id="result" aria-live="polite"></p>
+        <div id="regions" style="margin-top:18px"></div>
+      </div>
+      <div class="map hide-on-error"><img src="images/2019/03/daylight-electrician-locations-singapore-regions-1024x914.jpg" alt="Map of Daylight Electrician regions in Singapore" loading="lazy"></div>
+    </div>
+  </section>
+
+  <section class="alt">
+    <div class="wrap">
+      <div class="center"><span class="eyebrow">Why a local electrician</span><h2>Why you need an electrician near you</h2>
+        <p class="lead">Many homeowners delay electrical issues, assuming they are minor. A professional electrician nearby helps you deal with them early, reduces safety risks and keeps your system reliable.</p></div>
+      <div class="reasons">
+        <div class="feature"><span class="ic" id="r1"></span><div><h3>Fix issues immediately</h3><p>Loose switches, flickering lights or frequent power trips can escalate. A nearby electrician catches them before they become serious faults.</p></div></div>
+        <div class="feature"><span class="ic" id="r2"></span><div><h3>Save time, reduce risk</h3><p>Troubleshooting without the right tools or experience is slow and unsafe. A professional resolves it without trial and error.</p></div></div>
+        <div class="feature"><span class="ic" id="r3"></span><div><h3>Handle multiple tasks</h3><p>Lighting, power points, fans and troubleshooting can all be handled in a single visit, keeping works organised.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap"><div class="band"><div><h2>Don't see your area?</h2><p>We serve all of Singapore. WhatsApp us your address and we'll arrange the nearest team.</p></div><a class="btn btn-ink" id="bandWa" target="_blank" rel="noopener"></a></div></div>
+  </section>
+</main>
+<div id="site-footer"></div>
+<script src="data/catalog.js"></script>
+<script src="assets/site.js?v=5"></script>
+<script>
+  sIcon.outerHTML = icon('search');
+  r1.innerHTML = icon('bolt'); r2.innerHTML = icon('clock'); r3.innerHTML = icon('tool');
+  bandWa.href = wa('Hi Daylight Electrician, can you serve my area? My address is '); bandWa.innerHTML = icon('wa') + 'WhatsApp us';
+  const REGIONS = [
+    { k: 'east', n: 'East', phone: '+65 3158 6911', addr: '5 Tampines Central 6, #03-38, Singapore 529482',
+      areas: ['Aljunied', 'Bartley', 'Bedok', 'Changi', 'East Coast', 'Eunos', 'Kembangan', 'Loyang', 'Pasir Ris', 'Paya Lebar', 'Simei', 'Tai Seng', 'Tampines'] },
+    { k: 'west', n: 'West', phone: '+65 3158 3900', addr: '21 Bukit Batok Crescent, #09-79, Singapore 658065',
+      areas: ['Boon Lay', 'Bukit Batok', 'Bukit Panjang', 'Buona Vista', 'Chin Bee', 'Choa Chu Kang', 'Clementi', 'Hillview', 'Holland Village', 'Joo Koon', 'Jurong East', 'Jurong West', 'Pasir Panjang', 'Pioneer', 'Teban Gardens', 'Tengah', 'Toh Tuck', 'Tuas', 'West Coast', 'Yew Tee', 'Yuhua'] },
+    { k: 'north', n: 'North', phone: '+65 3158 3901', addr: '21 Woodlands Close #03-25, Singapore 737854',
+      areas: ['Admiralty', 'Canberra', 'Chong Pang', 'Lim Chu Kang', 'Mandai', 'Marsiling', 'Sembawang', 'Simpang', 'Woodlands', 'Yishun'] },
+    { k: 'north-east', n: 'North-East', phone: '+65 3158 3902', addr: '5008 Ang Mo Kio Ave 5 #04-09, Singapore 569874',
+      areas: ['Ang Mo Kio', 'Bishan', 'Buangkok', 'Cheng San', 'Chong Boon', 'Hougang', 'Kebun Baru', 'Punggol', 'Seletar', 'Sengkang', 'Serangoon', 'Sin Ming', 'Yio Chu Kang'] },
+    { k: 'central', n: 'Central', phone: '+65 6909 9921', addr: '1090 Lower Delta Road #03-07J, Singapore 169201',
+      areas: ['Alexandra', 'Anson Road', 'Ayer Rajah', 'Balestier', 'Bencoolen', 'Bidadari', 'Boon Keng', 'Bukit Gombak', 'Bukit Merah', 'Bukit Purmei', 'Bukit Timah', 'Caldecott Hill', 'Chinatown', 'Clarke Quay', 'Commonwealth', 'Dhoby Ghaut', 'Dover', 'Emerald Hill', 'Esplanade', 'Farrer Park', 'Ghim Moh', 'Geylang', 'HarbourFront', 'Kallang', 'Katong', 'Kent Ridge', 'Labrador Park', 'Lavender', 'Little India', 'Marina Bay', 'Marine Parade', 'Mount Vernon', 'Newton', 'Novena', 'One-North', 'Orchard', 'Outram', 'Potong Pasir', 'Queenstown', 'Radin Mas', 'Raffles City', 'River Valley', 'Robinson Road', 'Rochor', 'Sentosa', 'Shenton Way', 'Stevens Road', 'Sungei Road', 'Tanglin', 'Tanjong Pagar', 'Tanjong Rhu', 'Telok Blangah', 'Thomson', 'Tiong Bahru', 'Toa Payoh', 'Ubi', 'Whampoa'] }
+  ];
+  regions.innerHTML = REGIONS.map(r => `<div class="region" id="${r.k}">
+    <h3>${icon('pin')} Daylight Electrician – ${r.n}${r.k === 'east' ? ' <span class="tag">This branch</span>' : ''}</h3>
+    <div class="meta"><a href="tel:${r.phone.replace(/\s/g, '')}">${icon('phone')}${r.phone}</a><a href="${wa()}" target="_blank" rel="noopener">${icon('wa')}${SITE.waLabel}</a><span>${icon('home')}${r.addr}</span></div>
+    <div class="chips">${r.areas.map(a => `<span class="chip" data-a="${a.toLowerCase()}">${a}</span>`).join('')}</div></div>`).join('');
+  regions.querySelectorAll('.region h3 svg').forEach(s => { s.style.width = '20px'; s.style.color = 'var(--sun-2)'; });
+  q.addEventListener('input', () => {
+    const t = q.value.trim().toLowerCase();
+    let hit = null;
+    document.querySelectorAll('.region').forEach(r => {
+      let m = false;
+      r.querySelectorAll('.chip').forEach(c => { const ok = t.length > 1 && c.dataset.a.includes(t); c.classList.toggle('match', ok); m = m || ok; });
+      r.classList.toggle('hit', m); if (m && !hit) hit = r;
+    });
+    if (!t) result.textContent = '';
+    else if (hit) { const reg = REGIONS.find(x => x.k === hit.id); result.innerHTML = `Served by our <b>${reg.n}</b> branch · <a href="tel:${reg.phone.replace(/\s/g, '')}" style="color:var(--brand-navy)">${reg.phone}</a>`; hit.scrollIntoView({ block: 'nearest', behavior: 'smooth' }); }
+    else result.innerHTML = 'Not listed, but we serve all of Singapore. <b>WhatsApp us</b> and we\'ll arrange the nearest team.';
+  });
+</script>
+</body>
+</html>

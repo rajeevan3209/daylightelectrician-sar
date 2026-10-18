@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Our Electrical Works</title>
+<meta name="description" content="Portfolio of completed electrical works by Daylight Electrician across HDB, condo, landed and commercial properties in Singapore.">
+<link rel="icon" href="images/2017/01/cropped-Daylight-Electrician-Singapore-logo-favicon-32x32.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css?v=5">
+<style>
+  .toolbar { display: flex; flex-direction: column; gap: 16px; align-items: center; margin-bottom: 32px; }
+  .chips { justify-content: center; }
+  .chips.collapsed .chip.extra { display: none; }
+  .count-line { text-align: center; color: var(--muted); font-weight: 600; font-size: 14px; margin-bottom: 18px; }
+  .gallery { grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); }
+</style>
+</head>
+<body data-page="portfolio">
+<div id="site-header"></div>
+<main>
+  <section class="page-hero">
+    <div class="wrap">
+      <div class="crumbs"><a href="index.html">Home</a><span>Portfolio</span></div>
+      <h1>Our completed electrical works</h1>
+      <p>Real jobs by our electricians in HDB flats, condos, landed homes and commercial spaces across Singapore. Filter by type of work or search by area.</p>
+    </div>
+  </section>
+  <section>
+    <div class="wrap">
+      <div class="toolbar">
+        <label class="search"><span class="sr-only">Search projects</span><span id="sIcon"></span><input id="q" type="search" placeholder="Search by area or job, e.g. Bedok, condo, socket" autocomplete="off"></label>
+        <div class="chips collapsed" id="chips"></div>
+        <button class="btn btn-line btn-sm" id="moreChips" type="button">Show all categories</button>
+      </div>
+      <p class="count-line" id="count"></p>
+      <div class="gallery" id="grid"></div>
+      <div class="center" style="margin-top:32px"><button class="btn btn-ink" id="loadMore" type="button">Load more projects</button></div>
+    </div>
+  </section>
+</main>
+<div id="site-footer"></div>
+<script src="data/catalog.js"></script>
+<script src="data/portfolio.js"></script>
+<script src="assets/site.js?v=5"></script>
+<script>
+  sIcon.outerHTML = icon('search');
+  const PAGE = 24;
+  let active = 'all', limit = PAGE, filtered = [];
+  const counts = {};
+  PORTFOLIO.items.forEach(p => p.c.forEach(c => counts[c] = (counts[c] || 0) + 1));
+  const filters = PORTFOLIO.filters.filter(([k]) => counts[k]).sort((a, b) => counts[b[0]] - counts[a[0]]);
+  chips.innerHTML = `<button class="chip active" data-k="all">All projects <small>${PORTFOLIO.items.length}</small></button>` +
+    filters.map(([k, n], i) => `<button class="chip ${i >= 9 ? 'extra' : ''}" data-k="${k}">${esc(n)} <small>${counts[k]}</small></button>`).join('');
+  moreChips.addEventListener('click', () => {
+    const c = chips.classList.toggle('collapsed');
+    moreChips.textContent = c ? 'Show all categories' : 'Show fewer categories';
+  });
+  function apply() {
+    const term = q.value.trim().toLowerCase();
+    filtered = PORTFOLIO.items.filter(p => (active === 'all' || p.c.includes(active)) && (!term || p.t.toLowerCase().includes(term)));
+    chips.querySelectorAll('.chip').forEach(b => b.classList.toggle('active', b.dataset.k === active));
+    const shown = filtered.slice(0, limit);
+    grid.innerHTML = shown.map((p, i) => `<button class="hide-on-error" data-i="${i}"><img src="${p.img}" alt="${esc(p.t)}" loading="lazy"><span class="cap">${esc(p.t)}</span></button>`).join('');
+    count.textContent = filtered.length ? `Showing ${shown.length} of ${filtered.length} projects` : 'No projects match. Try another search.';
+    loadMore.style.display = filtered.length > limit ? '' : 'none';
+  }
+  chips.addEventListener('click', e => { const b = e.target.closest('.chip'); if (!b) return; active = b.dataset.k; limit = PAGE; apply(); });
+  q.addEventListener('input', () => { limit = PAGE; apply(); });
+  loadMore.addEventListener('click', () => { limit += PAGE; apply(); });
+  grid.addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return;
+    openLightbox(filtered.slice(0, limit).map(p => ({ src: p.img, cap: p.t })), +b.dataset.i);
+  });
+  apply();
+</script>
+</body>
+</html>

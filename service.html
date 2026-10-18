@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Electrician Service</title>
+<link rel="icon" href="images/2017/01/cropped-Daylight-Electrician-Singapore-logo-favicon-32x32.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css?v=5">
+<style>
+  .steps3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: -36px 0 40px; position: relative; z-index: 2; }
+  .steps3 div { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 18px 20px; display: flex; gap: 14px; align-items: center; box-shadow: var(--shadow); }
+  .steps3 b { width: 38px; height: 38px; border-radius: 50%; background: var(--sun); color: var(--ink); display: grid; place-items: center; font-weight: 800; flex: none; }
+  .steps3 span { font-weight: 700; color: var(--ink); font-size: 15px; }
+  .hero-media { margin-bottom: 28px; border-radius: 20px; overflow: hidden; border: 1px solid var(--line); }
+  .hero-media img { width: 100%; max-height: 420px; object-fit: cover; }
+  .sub-h { margin-top: 56px; }
+  @media (max-width: 760px) {
+    .steps3 { gap: 8px; margin-top: -26px; }
+    .steps3 div { flex-direction: column; text-align: center; padding: 12px 8px; gap: 8px; }
+    .steps3 b { width: 30px; height: 30px; font-size: 14px; }
+    .steps3 span { font-size: 12.5px; line-height: 1.3; }
+  }
+</style>
+</head>
+<body data-page="service">
+<div id="site-header"></div>
+<main>
+  <section class="page-hero has-img" id="hero">
+    <div class="wrap">
+      <div class="crumbs" id="crumbs"></div>
+      <h1 id="title">Loading…</h1>
+      <p id="sum"></p>
+      <div class="actions" id="heroActions"></div>
+    </div>
+  </section>
+  <div class="wrap"><div class="steps3"><div><b>1</b><span>WhatsApp us your issue</span></div><div><b>2</b><span>Schedule an appointment</span></div><div><b>3</b><span>Get the job done</span></div></div></div>
+  <section style="padding-top:8px">
+    <div class="wrap layout">
+      <article>
+        <div class="hero-media hide-on-error" id="heroMedia"></div>
+        <div class="prose" id="body"></div>
+        <div id="faqWrap"></div>
+        <div id="galWrap"></div>
+        <div id="projWrap"></div>
+      </article>
+      <aside class="aside">
+        <div class="box dark"><h3>Get a transparent quote</h3><p>Send us a photo of the problem. Price is quoted and agreed before our electricians go down.</p><span id="asideBtns"></span></div>
+        <div class="box"><h3 id="relTitle">Related services</h3><div class="links" id="rel"></div></div>
+        <div class="box"><h3>Why Daylight Electrician</h3><div class="links" style="font-size:14px">
+          <a href="about.html">✔ EMA licensed electricians</a><a href="pricing.html">✔ No hidden cost, honest pricing</a><a href="about.html">✔ 30-day service warranty</a><a href="reviews.html">✔ Rated 4.9 by our customers</a></div></div>
+      </aside>
+    </div>
+  </section>
+  <section class="alt"><div class="wrap"><div class="center"><span class="eyebrow">More services</span><h2>You might also need</h2></div><div class="grid g3" id="more" style="margin-top:32px"></div></div></section>
+</main>
+<div id="site-footer"></div>
+<script src="data/catalog.js"></script>
+<script src="data/portfolio.js"></script>
+<script src="assets/site.js?v=5"></script>
+<script>
+(function () {
+  const slug = new URLSearchParams(location.search).get('s');
+  const meta = CATALOG.find(s => s.s === slug);
+  if (!meta) { location.replace('services.html'); return; }
+  const cat = CATS.find(c => c.k === meta.c);
+  const s = document.createElement('script');
+  s.src = `data/services/${meta.s}.js`;
+  s.onload = () => render(window.SERVICE);
+  document.body.appendChild(s);
+
+  function para(t) { return `<p>${esc(t)}</p>`; }
+  function list(ul) { return ul.length ? `<ul>${ul.map(x => `<li>${esc(x)}</li>`).join('')}</ul>` : ''; }
+  function img(src, cls = '') { return src ? `<figure class="${cls} hide-on-error"><img src="${src}" alt="" loading="lazy"></figure>` : ''; }
+
+  function render(d) {
+    document.title = meta.n + ' | Daylight Electrician';
+    title.textContent = meta.n;
+    sum.textContent = meta.sum;
+    crumbs.innerHTML = `<a href="index.html">Home</a><span><a href="services.html">Services</a></span><span><a href="services.html#${cat.k}">${esc(cat.n)}</a></span>`;
+    heroActions.innerHTML = `<a class="btn btn-wa" target="_blank" rel="noopener" href="${wa(`Hi Daylight Electrician, I'd like a quote for ${meta.n}.`)}">${icon('wa')}WhatsApp for a quote</a>
+      <a class="btn btn-ghost" href="pricing.html">See price guide</a>`;
+    if (d.hero) { hero.style.setProperty('--hero-img', `url("${d.hero}")`); heroMedia.innerHTML = `<img src="${d.hero}" alt="${esc(meta.n)}">`; }
+    else heroMedia.remove();
+    asideBtns.innerHTML = `<a class="btn btn-wa" target="_blank" rel="noopener" href="${wa(`Hi Daylight Electrician, I'd like a quote for ${meta.n}.`)}">${icon('wa')}WhatsApp ${SITE.waLabel}</a>
+      <a class="btn btn-ghost" href="tel:${SITE.tel}">${icon('phone')}Call ${SITE.telLabel}</a>`;
+
+    // Article body
+    body.innerHTML = d.sections.map((sec, i) => {
+      let h = sec.h ? `<h2>${esc(sec.h)}</h2>` : '';
+      if (sec.img) h += img(sec.img, sec.p.length ? 'float' : '');
+      h += sec.p.map(para).join('') + list(sec.ul);
+      if (sec.items.length) {
+        const simple = sec.items.every(it => it.p.join(' ').length < 420 && !it.ul.length);
+        if (simple) {
+          h += `<div class="items">${sec.items.map(it => `<div class="item">${it.img ? `<img src="${it.img}" alt="" loading="lazy" class="hide-on-error">` : ''}<h3>${esc(it.h)}</h3>${it.p.map(para).join('')}</div>`).join('')}</div>`;
+        } else {
+          h += sec.items.map(it => `<h3>${esc(it.h)}</h3>${it.img ? img(it.img, 'float') : ''}${it.p.map(para).join('')}${list(it.ul)}${(it.imgs || []).map(x => img(x)).join('')}`).join('');
+        }
+      }
+      h += (sec.imgs || []).map(x => img(x)).join('');
+      return h;
+    }).join('');
+
+    // FAQs
+    if (d.faqs.length) faqWrap.innerHTML = `<h2 class="sub-h">${esc(meta.n.split('/')[0].trim())} FAQs</h2><div class="faq-list" style="margin-top:18px">` +
+      d.faqs.map(f => `<details><summary>${esc(f.q)}</summary><div>${f.a.map(para).join('')}</div></details>`).join('') + '</div>';
+
+    // Case-study gallery from the original page
+    if (d.gallery.length) {
+      const g = d.gallery.map(src => ({ src: fullImg(src), thumb: src, cap: meta.n }));
+      galWrap.innerHTML = `<h2 class="sub-h">Case studies</h2><p style="color:var(--muted);margin:6px 0 18px">Photos from real jobs by our electricians.</p><div class="gallery" id="gal">` +
+        g.map((x, i) => `<button class="hide-on-error" data-i="${i}"><img src="${x.thumb}" alt="${esc(meta.n)} job photo" loading="lazy"></button>`).join('') + '</div>';
+      document.getElementById('gal').addEventListener('click', e => { const b = e.target.closest('button'); if (b) openLightbox(g, +b.dataset.i); });
+    }
+
+    // Related portfolio projects by keyword
+    const kw = {
+      repairs: /troubleshoot|repair|power|trip|mcb|isolator/i, wiring: /wiring|db box|distribution|isolator|mcb|installation/i,
+      lighting: /light/i, switches: /switch|socket|plug|doorbell|data/i, fans: /fan|ventilation|exhaust/i,
+      bathroom: /heater|toilet|acrylic|panel/i, cctv: /cctv|camera/i
+    }[meta.c];
+    const name = meta.n.toLowerCase();
+    const exact = PORTFOLIO.items.filter(p => name.split(/[\s/()]+/).filter(w => w.length > 3 && !['installation', 'services', 'service', 'replacement', 'repair', 'electrical', 'electric'].includes(w)).some(w => p.t.toLowerCase().includes(w)));
+    const proj = (exact.length >= 4 ? exact : exact.concat(PORTFOLIO.items.filter(p => kw.test(p.t) && !exact.includes(p)))).slice(0, 8);
+    if (proj.length) {
+      const pl = proj.map(p => ({ src: p.img, cap: p.t }));
+      projWrap.innerHTML = `<h2 class="sub-h">Related completed works</h2><div class="gallery" id="proj" style="margin-top:18px">` +
+        proj.map((p, i) => `<button class="hide-on-error" data-i="${i}"><img src="${p.img}" alt="${esc(p.t)}" loading="lazy"><span class="cap">${esc(p.t)}</span></button>`).join('') +
+        `</div><p style="margin-top:16px"><a class="btn btn-line btn-sm" href="portfolio.html">View all projects</a></p>`;
+      document.getElementById('proj').addEventListener('click', e => { const b = e.target.closest('button'); if (b) openLightbox(pl, +b.dataset.i); });
+    }
+
+    // Related services
+    const same = CATALOG.filter(x => x.c === meta.c);
+    relTitle.textContent = cat.n;
+    rel.innerHTML = same.map(x => `<a href="${svcUrl(x.s)}" class="${x.s === meta.s ? 'cur' : ''}">${esc(x.n)}</a>`).join('');
+    const others = CATALOG.filter(x => x.c !== meta.c);
+    const pick = []; const seen = new Set();
+    for (const x of others) { if (!seen.has(x.c)) { seen.add(x.c); pick.push(x); } }
+    more.innerHTML = pick.slice(0, 6).map(x => `<a class="card" href="${svcUrl(x.s)}"><div class="thumb"><img src="${x.img}" alt="" loading="lazy"></div>
+      <div class="body"><h3>${esc(x.n)}</h3><p>${esc(x.sum)}</p><span class="more">View service ${icon('arrow')}</span></div></a>`).join('');
+    observeReveal();
+  }
+})();
+</script>
+</body>
+</html>

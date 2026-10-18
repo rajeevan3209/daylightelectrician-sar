@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Daylight Electrician East</title>
+<meta name="description" content="EMA-licensed electricians serving Tampines, Bedok, Pasir Ris and all of East Singapore. Transparent pricing, 30-day warranty, fast response. WhatsApp +65 8241 0032.">
+<link rel="icon" href="images/2017/01/cropped-Daylight-Electrician-Singapore-logo-favicon-32x32.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css?v=5">
+<style>
+  .hero {
+    position: relative; overflow: hidden; color: #fff; padding: 84px 0 120px;
+    background: var(--ink);
+  }
+  .hero::before {
+    content: ""; position: absolute; inset: 0; transform: scaleX(-1);
+    background: url("images/revslider/electrician3/bann.jpg") left center/cover no-repeat;
+  }
+  .hero::after {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background:
+      radial-gradient(700px 400px at 85% 0%, rgba(249,194,46,.25), transparent 60%),
+      linear-gradient(100deg, rgba(11,20,48,.97) 0%, rgba(11,20,48,.9) 42%, rgba(11,20,48,.55) 100%);
+  }
+  .hero .wrap { position: relative; z-index: 1; display: grid; grid-template-columns: 1.15fr .85fr; gap: 56px; align-items: center; }
+  .hero h1 { color: #fff; font-size: clamp(36px, 5.4vw, 62px); font-weight: 800; margin: 18px 0 18px; }
+  .hero h1 .glow { color: var(--sun); text-shadow: 0 0 40px rgba(249,194,46,.45); }
+  .hero p { color: #d3d9ee; font-size: 18px; max-width: 560px; }
+  .pill { display: inline-flex; align-items: center; gap: 10px; padding: 7px 14px 7px 7px; border-radius: 999px; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.15); font-size: 14px; font-weight: 600; }
+  .pill b { background: var(--sun); color: var(--ink); border-radius: 999px; padding: 2px 10px; }
+  .hero .actions { display: flex; gap: 12px; margin-top: 30px; flex-wrap: wrap; }
+  .hero-trust { display: flex; gap: 26px; margin-top: 36px; flex-wrap: wrap; }
+  .hero-trust div { display: flex; align-items: center; gap: 10px; font-size: 14px; color: #d3d9ee; font-weight: 600; }
+  .hero-trust svg { width: 22px; height: 22px; color: var(--sun); }
+  .qcard { background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.14); border-radius: 24px; padding: 28px; backdrop-filter: blur(10px); }
+  .qcard { margin-top: 56px; }
+  .qcard h3 { color: #fff; font-size: 22px; text-align: center; }
+  .qcard > p { font-size: 14px; color: #aab3d4; margin: 6px 0 18px; text-align: center; }
+  /* Flashing bulb sitting on top of the quote card */
+  .bulb { position: relative; width: 104px; height: 104px; margin: -92px auto 6px; }
+  .bulb::before {
+    content: ""; position: absolute; left: 50%; top: 40%; width: 150px; height: 150px; transform: translate(-50%, -50%);
+    border-radius: 50%; background: radial-gradient(circle, rgba(249,194,46,.55) 0%, rgba(249,194,46,0) 65%);
+    animation: halo 2.4s ease-in-out infinite;
+  }
+  .bulb svg { position: relative; width: 100%; height: 100%; animation: flash 2.4s ease-in-out infinite; }
+  .bulb .glass { animation: glass 2.4s ease-in-out infinite; }
+  @keyframes halo { 0%, 100% { opacity: .35; transform: translate(-50%, -50%) scale(.85); } 50% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); } }
+  @keyframes flash {
+    0%, 100% { filter: drop-shadow(0 0 10px rgba(249,194,46,.45)); }
+    50% { filter: drop-shadow(0 0 32px rgba(249,194,46,.95)); }
+    61% { filter: drop-shadow(0 0 4px rgba(249,194,46,.2)); }
+    64% { filter: drop-shadow(0 0 30px rgba(249,194,46,.9)); }
+  }
+  @keyframes glass { 0%, 100% { opacity: .8; } 50% { opacity: 1; } 61% { opacity: .45; } 64% { opacity: 1; } }
+  @media (prefers-reduced-motion: reduce) { .bulb::before, .bulb svg, .bulb .glass { animation: none; } .bulb::before { opacity: .7; } }
+  .qcard label { font-size: 13px; font-weight: 600; color: #aab3d4; display: block; margin-bottom: 6px; }
+  .qcard select, .qcard textarea { width: 100%; padding: 12px 14px; border-radius: 12px; border: 1px solid rgba(255,255,255,.18); background: rgba(11,20,48,.65); color: #fff; font: inherit; font-size: 15px; }
+  .qcard textarea { min-height: 70px; resize: vertical; }
+  .qcard .f { display: grid; gap: 12px; }
+  .qcard .btn { width: 100%; margin-top: 4px; }
+  .stats { margin-top: -58px; position: relative; z-index: 2; padding: 0; }
+  .cat-card .thumb { aspect-ratio: 16/9; }
+  .cat-card .count { font-size: 12.5px; font-weight: 700; color: var(--muted); }
+  .why-wrap { display: grid; grid-template-columns: .9fr 1.1fr; gap: 56px; align-items: center; }
+  .why-img { border-radius: 24px; overflow: hidden; box-shadow: var(--shadow); position: relative; }
+  .why-img img { width: 100%; aspect-ratio: 4/3.6; object-fit: cover; object-position: 30% center; }
+  .why-img .badge { position: absolute; left: 18px; bottom: 18px; right: 18px; background: rgba(255,255,255,.95); border-radius: 16px; padding: 14px 16px; display: flex; gap: 12px; align-items: center; }
+  .why-img .badge img { width: 54px; height: 54px; aspect-ratio: auto; object-fit: contain; border-radius: 8px; }
+  .why-img .badge b { display: block; color: var(--ink); font-size: 15px; }
+  .why-img .badge span { font-size: 13px; color: var(--muted); }
+  .clients-img { max-width: 980px; margin: 36px auto 0; background: #fff; border: 1px solid var(--line); border-radius: 24px; padding: clamp(12px, 3vw, 26px); box-shadow: var(--shadow); }
+  .clients-img img { width: 100%; height: auto; border-radius: 12px; }
+  .area-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+  .area-wrap .map { border-radius: 24px; overflow: hidden; border: 1px solid var(--line); box-shadow: var(--shadow); }
+  @media (max-width: 1000px) { .hero .wrap, .why-wrap, .area-wrap { grid-template-columns: 1fr; } }
+  @media (max-width: 760px) { .hero { padding: 52px 0 100px; } }
+</style>
+</head>
+<body data-page="home">
+<div id="site-header"></div>
+
+<main>
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <span class="pill"><b>★ 4.9</b> 2,429 reviews for our East branch</span>
+      <h1>Bright, safe homes start with the <span class="glow">right electrician.</span></h1>
+      <p>Daylight Electrician provides reliable, professional, EMA-licensed electrician services for HDB, condo, landed and commercial properties. Honest prices agreed before we go on-site, plus a 30-day service warranty.</p>
+      <div class="actions">
+        <a class="btn btn-wa" id="heroWa" target="_blank" rel="noopener"></a>
+        <a class="btn btn-ghost" href="services.html">Browse 50 services</a>
+      </div>
+      <div class="hero-trust" id="heroTrust"></div>
+    </div>
+    <div class="qcard">
+      <div class="bulb" aria-hidden="true">
+        <svg viewBox="0 0 120 120">
+          <defs><radialGradient id="bulbGlow" cx="50%" cy="38%" r="55%"><stop offset="0" stop-color="#fffbe6"/><stop offset=".55" stop-color="#ffd257"/><stop offset="1" stop-color="#f0a500"/></radialGradient></defs>
+          <circle class="glass" cx="60" cy="50" r="34" fill="url(#bulbGlow)"/>
+          <path d="M51 63 L57 46 L63 56 L69 40" stroke="#fff" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <rect x="46" y="80" width="28" height="8" rx="2" fill="#c9d0e8"/>
+          <rect x="48" y="90" width="24" height="7" rx="2" fill="#aab3d4"/>
+          <rect x="52" y="99" width="16" height="6" rx="3" fill="#8790b5"/>
+        </svg>
+      </div>
+      <h3>Get a quote in minutes</h3>
+      <p>Tell us what's wrong. We'll reply on WhatsApp with transparent pricing.</p>
+      <form class="f" id="quickForm">
+        <div><label for="qService">What do you need?</label><select id="qService" required></select></div>
+        <div><label for="qArea">Your area</label><select id="qArea"></select></div>
+        <div><label for="qNote">Details (optional)</label><textarea id="qNote" placeholder="e.g. Kitchen sockets tripping since this morning"></textarea></div>
+        <button class="btn btn-sun" type="submit" id="qBtn"></button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="stats">
+  <div class="wrap">
+    <div class="stats-grid reveal">
+      <div class="stat"><b>4.9★</b><span>Average rating</span></div>
+      <div class="stat"><b>2,429</b><span>Reviews for our East branch</span></div>
+      <div class="stat"><b>317+</b><span>Projects in our portfolio</span></div>
+      <div class="stat"><b>30-day</b><span>Service warranty</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="wrap">
+    <div class="center">
+      <span class="eyebrow" data-i="bolt">Our services</span>
+      <h2>One call for every electrical job</h2>
+      <p class="lead">From a single faulty switch to full rewiring, explore our services by category.</p>
+    </div>
+    <div class="grid g4" id="catGrid" style="margin-top:40px"></div>
+    <div class="center" style="margin-top:34px"><a class="btn btn-ink" href="services.html">See all services</a></div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="band reveal">
+      <div><h2>Power just went out?</h2><p>Sparking outlets, burning smells, power trips or a complete loss of power: our emergency electricians respond fast. Never attempt a DIY fix in these situations.</p></div>
+      <a class="btn btn-ink" id="emWa" target="_blank" rel="noopener"></a>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap why-wrap">
+    <div class="why-img reveal hide-on-error">
+      <img src="images/2021/10/daylight-electrician-careers-photo-daylight-electrician-singapore.jpg" alt="Daylight Electrician technicians installing trunking" loading="lazy">
+      <div class="badge">
+        <img src="images/2020/08/Daylight-Electrician-Readers-Choice-Award-2020.jpg" alt="Readers' Choice Award 2020" loading="lazy">
+        <div><b>Gold Award, Best Electricians</b><span>Expat Living Readers' Choice 2019 &amp; 2020</span></div>
+      </div>
+    </div>
+    <div>
+      <span class="eyebrow" data-i="bolt">Why Daylight</span>
+      <h2>Electricians you'll actually want to call back</h2>
+      <p class="lead">More than 20 years of experience in electrical works and thousands of cases across HDB, condo, landed and commercial properties.</p>
+      <div class="grid g2" style="margin-top:28px" id="whyGrid"></div>
+      <a class="btn btn-line" href="about.html" style="margin-top:28px">More about us</a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="center">
+      <span class="eyebrow" data-i="bolt">Recent work</span>
+      <h2>Fresh from our portfolio</h2>
+      <p class="lead">A few of the jobs our electricians completed recently. Tap a photo to enlarge it.</p>
+    </div>
+    <div class="gallery" id="recent" style="margin-top:36px"></div>
+    <div class="center" style="margin-top:30px"><a class="btn btn-ink" href="portfolio.html">View full portfolio</a></div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="center">
+      <span class="eyebrow" data-i="bolt">Customer reviews</span>
+      <h2>Rated 4.9 by our customers</h2>
+      <p class="lead">Excerpts from recent Google reviews of our East branch.</p>
+    </div>
+    <div class="grid g3" id="revGrid" style="margin-top:36px"></div>
+    <div class="center" style="margin-top:12px"><a class="btn btn-line" href="reviews.html">Read more reviews</a></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap center">
+    <span class="eyebrow" data-i="bolt">Our trusted clients</span>
+    <h2>Powering businesses across Singapore</h2>
+    <p class="lead">Besides homes, we also handle electrical work for commercial clients. Here are some of the businesses that have trusted us.</p>
+    <figure class="clients-img reveal hide-on-error">
+      <img src="images/2019/04/commercial-clients-daylight-electrician-singapore.png" width="1920" height="1080" loading="lazy"
+           alt="Client logos: Hume Brophy, Small Luxury Hotels of the World, Singapore Yacht Show, SM, The Cabin Singapore, Raumedic, Z, Hennsley, GP Strategies, Tots & Teddies, Chomel, Mobi-Air, Artichoke, Distribution NOW, Staarch">
+    </figure>
+    <p style="margin-top:18px;font-size:12px;color:var(--muted)">Not an exhaustive list. The logos and trademarks belong to their respective companies and do not serve as an endorsement.</p>
+    <h3 style="margin:56px 0 20px;font-size:18px">As featured on</h3>
+    <div class="logos" id="featured"></div>
+  </div>
+</section>
+
+<section class="alt" id="areas">
+  <div class="wrap area-wrap">
+    <div>
+      <span class="eyebrow" data-i="bolt">East branch</span>
+      <h2>Your neighbourhood electrician in the East</h2>
+      <p class="lead">Our Tampines branch covers every estate in East Singapore, and our wider team serves the whole island.</p>
+      <div class="chips" style="margin-top:22px" id="eastChips"></div>
+      <div class="c-rows" style="margin-top:26px;max-width:460px" id="eastContact"></div>
+      <a class="btn btn-line" href="locations.html" style="margin-top:22px">All locations &amp; service areas</a>
+    </div>
+    <div class="map reveal hide-on-error"><img src="images/2019/03/daylight-electrician-locations-singapore-regions-1024x914.jpg" alt="Map of Daylight Electrician service regions in Singapore" loading="lazy"></div>
+  </div>
+</section>
+
+<section>
+  <div class="narrow">
+    <div class="center"><span class="eyebrow" data-i="bolt">FAQ</span><h2>Good questions, straight answers</h2></div>
+    <div class="faq-list" style="margin-top:32px">
+      <details><summary>Are your electricians licensed?</summary><p>Yes. We are EMA-licensed electricians, certified by Singapore's Energy Market Authority, and work on HDB, condo, landed and commercial properties.</p></details>
+      <details><summary>Will I know the price before you come?</summary><p>Yes. We check the electrical issue with you first, and the price is quoted and agreed by you before our electricians go down. If we can't assess it accurately beforehand, there may be a small inspection charge, which may be waived if you engage us for the work. See our <a href="pricing.html" style="color:var(--brand-navy);font-weight:700">price guide</a>.</p></details>
+      <details><summary>Is there a warranty?</summary><p>Yes. Every job comes with a 30-day service warranty, and we only use original (OEM) parts for electrical installations.</p></details>
+      <details><summary>Do you offer emergency service?</summary><p>Yes. For power trips, power failures and other urgent problems, WhatsApp us at +65 8241 0032 and we'll respond as fast as we can.</p></details>
+      <details><summary>When can I reach you?</summary><p>Our WhatsApp line is open 8AM to 10PM, every day. You can also call +65 3158 6911 (East) or email enquiry@daylightelectrician.com.</p></details>
+    </div>
+  </div>
+</section>
+</main>
+
+<div id="site-footer"></div>
+<script src="data/catalog.js"></script>
+<script src="data/portfolio.js"></script>
+<script src="data/reviews.js"></script>
+<script src="assets/site.js?v=5"></script>
+<script>
+  const UP = SITE.UP;
+  document.querySelectorAll('[data-i]').forEach(e => e.insertAdjacentHTML('afterbegin', icon(e.dataset.i)));
+  heroWa.href = wa('Hi Daylight Electrician, I need help with ');
+  heroWa.innerHTML = icon('wa') + 'WhatsApp ' + SITE.waLabel;
+  heroTrust.innerHTML = [['shield', 'EMA licensed'], ['tag', 'No hidden costs'], ['clock', 'Fast emergency response']]
+    .map(([i, t]) => `<div>${icon(i)}${t}</div>`).join('');
+  emWa.href = wa('URGENT: I have an electrical emergency at ');
+  emWa.innerHTML = icon('wa') + 'Get emergency help';
+  qBtn.innerHTML = icon('wa') + 'Send via WhatsApp';
+
+  // Quote form options
+  qService.innerHTML = '<option value="">Select a service…</option>' +
+    CATS.map(c => `<optgroup label="${esc(c.n)}">${CATALOG.filter(s => s.c === c.k).map(s => `<option>${esc(s.n)}</option>`).join('')}</optgroup>`).join('') +
+    '<option>Something else</option>';
+  const EAST = ['Tampines', 'Bedok', 'Pasir Ris', 'Simei', 'Changi', 'Loyang', 'East Coast', 'Eunos', 'Kembangan', 'Paya Lebar', 'Aljunied', 'Bartley', 'Tai Seng'];
+  qArea.innerHTML = EAST.map(a => `<option>${a}</option>`).join('') + '<option>Other area in Singapore</option>';
+  quickForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const n = qNote.value.trim();
+    window.open(wa(`Hi Daylight Electrician, I'd like a quote.\nService: ${qService.value}\nArea: ${qArea.value}` + (n ? `\nDetails: ${n}` : '')), '_blank', 'noopener');
+  });
+
+  // Category tiles: use the first service image in each category
+  const catImg = { repairs: 'power-trip-power-failure', wiring: 'electrical-distribution-board-installation-electrical-panel-electric-board', lighting: 'downlight-installation', switches: 'power-point-power-socket-installation-replacement-singapore', fans: 'ceiling-fan-installation-replacement-singapore', bathroom: 'water-heater-switch-installation-replacement-repair', cctv: 'cctv-services' };
+  catGrid.innerHTML = CATS.map(c => {
+    const list = CATALOG.filter(s => s.c === c.k);
+    const pick = CATALOG.find(s => s.s === catImg[c.k]) || list[0];
+    return `<a class="card cat-card reveal" href="services.html#${c.k}">
+      <div class="thumb"><img src="${pick.img}" alt="" loading="lazy"></div>
+      <div class="body"><span class="count">${list.length} services</span><h3>${esc(c.n)}</h3>
+      <p>${list.slice(0, 3).map(s => esc(s.n.split('/')[0].split('(')[0].trim())).join(' · ')}</p>
+      <span class="more">Explore ${icon('arrow')}</span></div></a>`;
+  }).join('') + `<a class="card cat-card reveal" href="pricing.html" style="background:var(--ink);border:0">
+      <div class="body" style="justify-content:center;padding:28px"><span class="tag" style="align-self:flex-start">Price guide</span>
+      <h3 style="color:#fff;font-size:22px">Transparent pricing</h3><p style="color:#aab3d4">Light, socket and switch jobs from $86, all inclusive of labour &amp; transport.</p>
+      <span class="more" style="color:var(--sun)">See prices ${icon('arrow')}</span></div></a>`;
+
+  // Why
+  const WHY = [
+    ['shield', 'EMA licensed electricians', 'Certified by the Energy Market Authority, with the latest tools and equipment.'],
+    ['tag', 'No hidden charges', 'You sign off on any expense before it is incurred. What you see is what you get.'],
+    ['check', '30-day warranty', 'Every job is verified as a permanent fix, backed by 30 days of free support.'],
+    ['clock', 'Fast response', 'Every enquiry is returned, and we\'re there for your electrical emergencies.']
+  ];
+  whyGrid.innerHTML = WHY.map(([i, h, p]) => `<div class="feature reveal"><span class="ic">${icon(i)}</span><div><h3>${h}</h3><p>${p}</p></div></div>`).join('');
+
+  // Recent work
+  const recent = PORTFOLIO.items.slice(0, 8);
+  const lbList = recent.map(r => ({ src: r.img, cap: r.t }));
+  document.getElementById('recent').innerHTML = recent.map((r, i) =>
+    `<button class="hide-on-error reveal" data-i="${i}"><img src="${r.img}" alt="${esc(r.t)}" loading="lazy"><span class="cap">${esc(r.t)}</span></button>`).join('');
+  document.getElementById('recent').addEventListener('click', e => { const b = e.target.closest('button'); if (b) openLightbox(lbList, +b.dataset.i); });
+
+  // Reviews
+  const stars = '<div class="stars">' + icon('star').repeat(5) + '</div>';
+  revGrid.innerHTML = REVIEWS.filter(r => r.src === 'Google').slice(0, 6).map(r => `<div class="review reveal">${stars}<p>“${esc(r.t)}”</p>
+    <div class="who"><span class="av">${initials(r.n)}</span><div><b>${esc(r.n)}</b><small>Google review</small></div></div></div>`).join('');
+
+  // Featured on
+  const FEAT = ['2020/08/Yahoo-Finance-Daylight-Electrician-Singapore-300x121.png', '2020/08/Expat-Living-Daylight-Electrician-Singapore.png', '2020/08/Money-Smart-Daylight-Electrician-Singapore.png', '2020/08/Qanvast-Daylight-Electrician-Singapore.png', '2020/08/The-Best-Singapore-Daylight-Electrician-Singapore-300x70.png', '2023/05/savvyhome-logo-square-360x360-1-300x300.jpg', '2020/08/The-Wedding-Vow-Daylight-Electrician-Singapore.png', '2021/06/top-in-singapore-award-logo-daylight-electrician-singapore.png', '2021/11/handyman-reviewed-logo-daylight-electrician-singapore.jpg', '2020/08/Best-In-Singapore-Daylight-Electrician-Singapore.png'];
+  featured.innerHTML = FEAT.map(f => `<div class="lg hide-on-error"><img src="${UP + f}" alt="${esc(f.split('/').pop().replace(/-Daylight.*|-logo.*|\.\w+$/g, '').replace(/-/g, ' '))}" loading="lazy"></div>`).join('');
+
+  // East areas + contact
+  eastChips.innerHTML = EAST.map(a => `<span class="chip">${icon('pin')}${a}</span>`).join('');
+  eastContact.innerHTML = `
+    <a class="c-row" href="${wa()}" target="_blank" rel="noopener"><span class="ic wa">${icon('wa')}</span><span><small>WhatsApp · 8AM–10PM daily</small><b>${SITE.waLabel}</b></span></a>
+    <a class="c-row" href="tel:${SITE.tel}"><span class="ic">${icon('phone')}</span><span><small>Call the East branch</small><b>${SITE.telLabel}</b></span></a>
+    <div class="c-row"><span class="ic">${icon('pin')}</span><span><small>East branch</small><b>${SITE.eastAddr}</b></span></div>`;
+  observeReveal();
+</script>
+</body>
+</html>

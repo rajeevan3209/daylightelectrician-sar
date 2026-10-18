@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact Daylight</title>
+<meta name="description" content="Contact Daylight Electrician Singapore. WhatsApp +65 8241 0032, call +65 3158 6911 (East) or email enquiry@daylightelectrician.com.">
+<link rel="icon" href="images/2017/01/cropped-Daylight-Electrician-Singapore-logo-favicon-32x32.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css?v=5">
+<style>
+  .cgrid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 28px; align-items: start; }
+  .panel { border: 1px solid var(--line); border-radius: 24px; padding: 32px; background: #fff; }
+  .panel h2 { font-size: 26px; margin-top: 0; }
+  .note { background: var(--sun-soft); border-radius: 14px; padding: 14px 16px; font-size: 14px; color: #6b4b00; font-weight: 600; margin-top: 18px; }
+  .wa-img { max-width: 260px; margin-top: 18px; }
+  @media (max-width: 900px) { .cgrid { grid-template-columns: 1fr; } .panel { padding: 24px 20px; } }
+</style>
+</head>
+<body data-page="contact">
+<div id="site-header"></div>
+<main>
+  <section class="page-hero">
+    <div class="wrap">
+      <div class="crumbs"><a href="index.html">Home</a><span>Contact us</span></div>
+      <h1>Let's get your lights back on</h1>
+      <p>The fastest way to reach us is WhatsApp. Send a photo of the problem and we'll get back to you with a transparent quote.</p>
+    </div>
+  </section>
+  <section>
+    <div class="wrap cgrid">
+      <div class="panel">
+        <h2>Reach us directly</h2>
+        <div class="c-rows" id="rows" style="margin-top:18px"></div>
+        <p class="note">No showroom, no walk-ins. All services are by appointment. Our WhatsApp line is open 8AM – 10PM daily.</p>
+        <a id="waImg" target="_blank" rel="noopener"><img class="wa-img hide-on-error" src="images/2020/10/WhatsApp-Contact.png" alt="WhatsApp us"></a>
+      </div>
+      <div class="panel">
+        <h2>Send us the details</h2>
+        <p style="color:var(--muted)">Fill this in and choose how to send it. We'll reply with pricing and the earliest slot.</p>
+        <form class="form" id="f" style="margin-top:18px">
+          <div class="row2">
+            <div><label for="cName">Name</label><input id="cName" required placeholder="Your name"></div>
+            <div><label for="cPhone">Phone</label><input id="cPhone" type="tel" required placeholder="8xxx xxxx"></div>
+          </div>
+          <div class="row2">
+            <div><label for="cService">Service</label><select id="cService"></select></div>
+            <div><label for="cType">Property</label><select id="cType"><option>HDB</option><option>Condo</option><option>Landed</option><option>Commercial</option></select></div>
+          </div>
+          <div class="row2">
+            <div><label for="cArea">Area / postal code</label><input id="cArea" placeholder="e.g. Tampines, 520123"></div>
+            <div><label for="cWhen">When?</label><select id="cWhen"><option>As soon as possible</option><option>This week</option><option>Flexible</option></select></div>
+          </div>
+          <div><label for="cMsg">What do you need?</label><textarea id="cMsg" required placeholder="Describe the issue or the job"></textarea></div>
+          <div class="row2">
+            <button class="btn btn-wa" type="submit" data-via="wa" id="sendWa"></button>
+            <button class="btn btn-sun" type="submit" data-via="mail" id="sendMail"></button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+<div id="site-footer"></div>
+<script src="data/catalog.js"></script>
+<script src="assets/site.js?v=5"></script>
+<script>
+  rows.innerHTML = `
+    <a class="c-row" href="${wa()}" target="_blank" rel="noopener"><span class="ic wa">${icon('wa')}</span><span><small>WhatsApp · 8AM–10PM daily</small><b>${SITE.waLabel}</b></span></a>
+    <a class="c-row" href="tel:${SITE.tel}"><span class="ic">${icon('phone')}</span><span><small>East branch</small><b>${SITE.telLabel}</b></span></a>
+    <a class="c-row" href="tel:${SITE.tel2}"><span class="ic">${icon('phone')}</span><span><small>General line</small><b>${SITE.tel2Label}</b></span></a>
+    <a class="c-row" href="mailto:${SITE.email}"><span class="ic">${icon('mail')}</span><span><small>Email</small><b>${SITE.email}</b></span></a>
+    <div class="c-row"><span class="ic">${icon('pin')}</span><span><small>East branch</small><b>${SITE.eastAddr}</b></span></div>
+    <div class="c-row"><span class="ic">${icon('home')}</span><span><small>Head office</small><b>${SITE.hqAddr}</b></span></div>
+    <a class="c-row" href="locations.html"><span class="ic">${icon('pin')}</span><span><small>Other branches</small><b>West, North, North-East &amp; Central →</b></span></a>`;
+  waImg.href = wa();
+  cService.innerHTML = CATS.map(c => `<optgroup label="${esc(c.n)}">${CATALOG.filter(s => s.c === c.k).map(s => `<option>${esc(s.n)}</option>`).join('')}</optgroup>`).join('') + '<option selected>Not sure / other</option>';
+  sendWa.innerHTML = icon('wa') + 'Send on WhatsApp';
+  sendMail.innerHTML = icon('mail') + 'Send by email';
+  f.addEventListener('submit', e => {
+    e.preventDefault();
+    const v = id => document.getElementById(id).value.trim();
+    const body = `Name: ${v('cName')}\nPhone: ${v('cPhone')}\nService: ${v('cService')}\nProperty: ${v('cType')}\nArea: ${v('cArea')}\nTiming: ${v('cWhen')}\n\n${v('cMsg')}`;
+    if (e.submitter?.dataset.via === 'mail') location.href = `mailto:${SITE.email}?subject=${encodeURIComponent('Electrical enquiry: ' + v('cService'))}&body=${encodeURIComponent(body)}`;
+    else window.open(wa('Hi Daylight Electrician, new enquiry:\n' + body), '_blank', 'noopener');
+  });
+</script>
+</body>
+</html>

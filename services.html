@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Electrician Services</title>
+<meta name="description" content="All Daylight Electrician services: power trips, lighting, sockets, switches, wiring, DB boxes, fans, water heaters and CCTV.">
+<link rel="icon" href="images/2017/01/cropped-Daylight-Electrician-Singapore-logo-favicon-32x32.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css?v=5">
+<style>
+  .toolbar { display: flex; flex-direction: column; gap: 16px; align-items: center; margin-bottom: 40px; }
+  .cat-block { margin-top: 56px; scroll-margin-top: calc(var(--header-h) + 20px); }
+  .cat-block:first-child { margin-top: 0; }
+  .cat-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 20px; border-bottom: 2px solid var(--line); padding-bottom: 12px; }
+  .cat-head h2 { margin: 0; font-size: clamp(22px, 2.6vw, 28px); }
+  .cat-head span { color: var(--muted); font-weight: 700; font-size: 14px; }
+  .empty { text-align: center; color: var(--muted); padding: 40px 0; display: none; }
+</style>
+</head>
+<body data-page="services">
+<div id="site-header"></div>
+<main>
+  <section class="page-hero">
+    <div class="wrap">
+      <div class="crumbs"><a href="index.html">Home</a><span>Services</span></div>
+      <h1>Electrician services</h1>
+      <p>Daylight Electrician provides complete electrical services, from power trip recovery and lighting to wiring, DB boxes, fans, water heaters and CCTV. Every job is handled by our team with EMA-licensed electricians.</p>
+    </div>
+  </section>
+  <section>
+    <div class="wrap">
+      <div class="toolbar">
+        <label class="search"><span class="sr-only">Search services</span><span id="sIcon"></span><input id="q" type="search" placeholder="Search e.g. downlight, DB box, CCTV…" autocomplete="off"></label>
+        <div class="chips" id="chips" style="justify-content:center"></div>
+      </div>
+      <div id="blocks"></div>
+      <p class="empty" id="empty">No services match your search. <a href="contact.html" style="color:var(--brand-navy);font-weight:700">Ask us on WhatsApp</a>, we probably do it.</p>
+    </div>
+  </section>
+  <section style="padding-top:0">
+    <div class="wrap"><div class="band"><div><h2>Not sure which service you need?</h2><p>Send us a photo of the problem on WhatsApp. We'll tell you what's needed and what it costs before we come.</p></div><a class="btn btn-ink" id="bandWa" target="_blank" rel="noopener"></a></div></div>
+  </section>
+</main>
+<div id="site-footer"></div>
+<script src="data/catalog.js"></script>
+<script src="assets/site.js?v=5"></script>
+<script>
+  sIcon.outerHTML = icon('search');
+  bandWa.href = wa('Hi Daylight Electrician, I am not sure which service I need. Here is the problem: ');
+  bandWa.innerHTML = icon('wa') + 'WhatsApp us';
+  let active = location.hash.slice(1) || 'all';
+  const card = s => `<a class="card reveal" href="${svcUrl(s.s)}" data-name="${esc((s.n + ' ' + s.sum).toLowerCase())}">
+      <div class="thumb">${s.img ? `<img src="${s.img}" alt="" loading="lazy">` : ''}</div>
+      <div class="body"><h3>${esc(s.n)}</h3><p>${esc(s.sum)}</p><span class="more">View service ${icon('arrow')}</span></div></a>`;
+  blocks.innerHTML = CATS.map(c => {
+    const list = CATALOG.filter(s => s.c === c.k);
+    return `<div class="cat-block" id="${c.k}" data-cat="${c.k}"><div class="cat-head"><h2>${esc(c.n)}</h2><span>${list.length} services</span></div>
+      <div class="grid g3">${list.map(card).join('')}</div></div>`;
+  }).join('');
+  chips.innerHTML = `<button class="chip" data-k="all">All <small>${CATALOG.length}</small></button>` +
+    CATS.map(c => `<button class="chip" data-k="${c.k}">${esc(c.n)} <small>${CATALOG.filter(s => s.c === c.k).length}</small></button>`).join('');
+  function apply() {
+    const term = q.value.trim().toLowerCase();
+    let shown = 0;
+    chips.querySelectorAll('.chip').forEach(b => b.classList.toggle('active', b.dataset.k === active));
+    document.querySelectorAll('.cat-block').forEach(b => {
+      const catOk = active === 'all' || b.dataset.cat === active;
+      let n = 0;
+      b.querySelectorAll('.card').forEach(c => { const ok = catOk && (!term || c.dataset.name.includes(term)); c.style.display = ok ? '' : 'none'; if (ok) n++; });
+      b.style.display = n ? '' : 'none'; shown += n;
+    });
+    empty.style.display = shown ? 'none' : 'block';
+  }
+  chips.addEventListener('click', e => {
+    const b = e.target.closest('.chip'); if (!b) return;
+    active = b.dataset.k; history.replaceState(null, '', active === 'all' ? location.pathname : '#' + active); apply();
+  });
+  q.addEventListener('input', apply);
+  window.addEventListener('hashchange', () => { active = location.hash.slice(1) || 'all'; apply(); });
+  apply();
+  if (active !== 'all') document.getElementById(active)?.scrollIntoView();
+  observeReveal();
+</script>
+</body>
+</html>

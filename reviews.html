@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Customer Reviews</title>
+<meta name="description" content="Daylight Electrician Singapore reviews and testimonials from Google and our customers. Rated 4.9.">
+<link rel="icon" href="images/2017/01/cropped-Daylight-Electrician-Singapore-logo-favicon-32x32.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css?v=5">
+<style>
+  .score { display: flex; gap: 28px; align-items: center; flex-wrap: wrap; margin-top: 26px; }
+  .score .big { font-size: 64px; font-weight: 800; color: var(--sun); line-height: 1; }
+  .score .stars { display: flex; gap: 3px; color: var(--sun); }
+  .score .stars svg { width: 22px; height: 22px; }
+  .score small { color: #aab3d4; font-weight: 600; }
+  .platforms { display: flex; gap: 14px; flex-wrap: wrap; }
+  .platforms img { height: 54px; width: auto; background: #fff; border-radius: 10px; padding: 6px; }
+  .themes { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 44px; }
+  .themes div { background: var(--mist); border-radius: 16px; padding: 20px; }
+  .themes svg { width: 24px; height: 24px; color: var(--sun-2); margin-bottom: 10px; }
+  .themes h3 { font-size: 16px; margin-bottom: 4px; }
+  .themes p { font-size: 14px; color: var(--muted); }
+  @media (max-width: 900px) { .themes { grid-template-columns: 1fr 1fr; } }
+</style>
+</head>
+<body data-page="reviews">
+<div id="site-header"></div>
+<main>
+  <section class="page-hero">
+    <div class="wrap">
+      <div class="crumbs"><a href="index.html">Home</a><span><a href="about.html">About</a></span><span>Reviews</span></div>
+      <h1>What our customers say</h1>
+      <p>See reviews and testimonials from satisfied customers, including our Google and Facebook reviews.</p>
+      <div class="score">
+        <span class="big">4.9</span>
+        <div><div class="stars" id="hs"></div><small>Based on 3,269 reviews across Singapore · 2,429 for our East branch</small></div>
+        <div class="platforms">
+          <img class="hide-on-error" src="images/2017/09/daylight-electrician-singapore-google-review-2-300x124.png" alt="Google reviews">
+          <img class="hide-on-error" src="images/2017/09/daylight-electrician-singapore-facebook-review-300x91.jpg" alt="Facebook reviews">
+        </div>
+      </div>
+    </div>
+  </section>
+  <section>
+    <div class="wrap">
+      <figure class="hide-on-error" style="margin-bottom:40px;border-radius:20px;overflow:hidden;border:1px solid var(--line)"><img src="images/2022/06/daylight-electrician-about-banner.png" alt="Best rated electrician in Singapore: more than 1,000 five-star reviews on Google and Facebook" loading="lazy" style="width:100%"></figure>
+      <div class="themes" id="themes"></div>
+      <div class="masonry" id="list"></div>
+      <p style="text-align:center;color:var(--muted);font-size:13px;margin-top:10px">Excerpts from Google reviews and customer testimonials, lightly shortened for length.</p>
+    </div>
+  </section>
+  <section style="padding-top:0">
+    <div class="wrap"><div class="band"><div><h2>Ready to be our next happy customer?</h2><p>WhatsApp us for a transparent quote on any electrical job.</p></div><a class="btn btn-ink" id="bandWa" target="_blank" rel="noopener"></a></div></div>
+  </section>
+</main>
+<div id="site-footer"></div>
+<script src="data/catalog.js"></script>
+<script src="data/reviews.js"></script>
+<script src="assets/site.js?v=5"></script>
+<script>
+  const st = icon('star').repeat(5);
+  hs.innerHTML = st;
+  themes.innerHTML = [['clock', 'Punctual', 'Technicians arrive on time, often the same day.'], ['users', 'Clear explanations', 'Customers understand the fault and the fix.'], ['tool', 'Quick, lasting fixes', 'Root causes found and solved efficiently.'], ['check', 'Neat & tidy', 'Work areas are cleaned up before leaving.']]
+    .map(([i, h, p]) => `<div>${icon(i)}<h3>${h}</h3><p>${p}</p></div>`).join('');
+  list.innerHTML = REVIEWS.map(r => `<div class="review"><div class="stars">${st}</div><p>“${esc(r.t)}”</p>
+    <div class="who"><span class="av">${initials(r.n)}</span><div><b>${esc(r.n)}</b><small>${r.src === 'Google' ? 'Google review' : 'Customer testimonial'}</small></div></div></div>`).join('');
+  bandWa.href = wa(); bandWa.innerHTML = icon('wa') + 'WhatsApp ' + SITE.waLabel;
+</script>
+</body>
+</html>
